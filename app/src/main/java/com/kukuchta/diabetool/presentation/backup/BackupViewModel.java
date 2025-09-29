@@ -1,16 +1,16 @@
-package com.kukuchta.diabetool.ui.slideshow;
+package com.kukuchta.diabetool.presentation.backup;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class BackupViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public BackupViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is backup fragment");
     }
 
     public LiveData<String> getText() {

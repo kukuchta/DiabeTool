@@ -1,16 +1,16 @@
-package com.kukuchta.diabetool.ui.home;
+package com.kukuchta.diabetool.presentation.statistics;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class StatisticsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public StatisticsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is statistics fragment");
     }
 
     public LiveData<String> getText() {

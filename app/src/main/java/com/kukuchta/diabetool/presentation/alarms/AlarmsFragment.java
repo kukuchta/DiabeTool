@@ -1,4 +1,4 @@
-package com.kukuchta.diabetool.ui.slideshow;
+package com.kukuchta.diabetool.presentation.alarms;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.kukuchta.diabetool.databinding.FragmentSlideshowBinding;
+import com.kukuchta.diabetool.databinding.FragmentAlarmsBinding;
 
-public class SlideshowFragment extends Fragment {
+public class AlarmsFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentAlarmsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        AlarmsViewModel alarmsViewModel =
+                new ViewModelProvider(this).get(AlarmsViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentAlarmsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textAlarms;
+        alarmsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
