@@ -15,6 +15,17 @@ public interface BasalDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(BasalEntity basal);
 
-    @Query("SELECT * FROM basal WHERE timestamp BETWEEN :startTime AND :endTime ORDER BY timestamp DESC")
-    LiveData<List<BasalEntity>> getBasalHistory(Date startTime, Date endTime);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<BasalEntity> basals);
+
+    // Query for AUTO type
+    @Query("SELECT * FROM basal WHERE `type` = 'AUTO' AND timestamp BETWEEN :startTime AND :endTime ORDER BY timestamp DESC")
+    LiveData<List<BasalEntity>> getAutoBasals(Date startTime, Date endTime);
+
+    // Query for MANUAL type
+    @Query("SELECT * FROM basal WHERE `type` = 'MANUAL' AND timestamp BETWEEN :startTime AND :endTime ORDER BY timestamp DESC")
+    LiveData<List<BasalEntity>> getManualBasals(Date startTime, Date endTime);
+
+    @Query("DELETE FROM basal WHERE timestamp < :date")
+    void deleteBasalsBefore(Date date);
 }

@@ -19,10 +19,4 @@ public class GetNotificationsUseCase {
     public LiveData<List<Notification>> execute(@NonNull Date startTime, @NonNull Date endTime) {
         return notificationRepository.getNotifications(startTime, endTime);
     }
-
-    // Example: Get only unread notifications
-    @NonNull
-    public LiveData<List<Notification>> executeForUnread() {
-        return notificationRepository.getUnreadNotifications();
-    }
 }

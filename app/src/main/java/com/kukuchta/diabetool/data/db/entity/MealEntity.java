@@ -14,7 +14,7 @@ public class MealEntity {
     public long id;
 
     public Date timestamp;
-    public double carbs; // in grams
+    public int carbs; // in grams
     public boolean isManualEntry;
 
     public MealEntity() {}

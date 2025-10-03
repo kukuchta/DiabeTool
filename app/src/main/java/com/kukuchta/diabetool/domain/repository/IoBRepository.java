@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IoBRepository {
     // Write operations
-    void insertIoBSnapshot(@NonNull IoB iob);
+    void insertIoB(@NonNull IoB iob);
 
     // Read operations - observable
     @NonNull

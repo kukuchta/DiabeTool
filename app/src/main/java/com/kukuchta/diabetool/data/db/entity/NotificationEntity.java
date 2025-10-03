@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 import com.kukuchta.diabetool.data.db.converter.DateConverter;
+import com.kukuchta.diabetool.domain.model.NotificationType;
+
 import java.util.Date;
 
 @Entity(tableName = "notifications")
@@ -15,7 +17,7 @@ public class NotificationEntity {
 
     public Date timestamp;
     public String message;
-    public String type;    // e.g., "Alert", "Info", "Reminder"
+    public NotificationType type;
     public boolean isManualEntry;
 
     public NotificationEntity() {}

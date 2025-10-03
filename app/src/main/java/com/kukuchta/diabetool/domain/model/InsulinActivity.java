@@ -9,19 +9,19 @@ import java.util.Objects;
 
 public class InsulinActivity {
     private final Date timestamp;
-    private final double activityLevel; // A measure of insulin effectiveness
+    private final double value; // A measure of insulin effectiveness
 
-    public InsulinActivity(Date timestamp, double activityLevel) {
+    public InsulinActivity(Date timestamp, double value) {
         this.timestamp = timestamp;
-        this.activityLevel = activityLevel;
+        this.value = value;
     }
 
     public Date getTimestamp() {
         return timestamp;
     }
 
-    public double getActivityLevel() {
-        return activityLevel;
+    public double getValue() {
+        return value;
     }
 
     @Override
@@ -29,13 +29,13 @@ public class InsulinActivity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InsulinActivity that = (InsulinActivity) o;
-        return Math.abs(that.activityLevel - activityLevel) < ACTIVITY_EPSILON
+        return Math.abs(that.value - value) < ACTIVITY_EPSILON
                 && Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, activityLevel);
+        return Objects.hash(timestamp, value);
     }
 
     @NonNull
@@ -43,7 +43,7 @@ public class InsulinActivity {
     public String toString() {
         return "InsulinActivity{" +
                 "timestamp=" + timestamp +
-                ", activityLevel=" + activityLevel +
+                ", value=" + value +
                 '}';
     }
 }

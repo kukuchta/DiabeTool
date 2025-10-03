@@ -9,19 +9,19 @@ import java.util.Objects;
 
 public class IoB {
     private final Date timestamp;
-    private final double amount; // in units (IoB)
+    private final double value; // in units (IoB)
 
-    public IoB(Date timestamp, double amount) {
+    public IoB(Date timestamp, double value) {
         this.timestamp = timestamp;
-        this.amount = amount;
+        this.value = value;
     }
 
     public Date getTimestamp() {
         return timestamp;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getValue() {
+        return value;
     }
 
     @Override
@@ -29,13 +29,13 @@ public class IoB {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IoB that = (IoB) o;
-        return Math.abs(that.amount - amount) < IOB_EPSILON &&
+        return Math.abs(that.value - value) < IOB_EPSILON &&
                 Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, amount);
+        return Objects.hash(timestamp, value);
     }
 
     @NonNull
@@ -43,7 +43,7 @@ public class IoB {
     public String toString() {
         return "IoB{" +
                 "timestamp=" + timestamp +
-                ", amount=" + amount +
+                ", value=" + value +
                 '}';
     }
 }

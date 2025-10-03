@@ -12,14 +12,20 @@ import java.util.List;
 @Dao
 public interface SensorReadingDao {
 
-    @Insert(onConflict = OnConflictStrategy.FAIL) //TODO check strategies
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(SensorReadingEntity sensorReading);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<SensorReadingEntity> readings);
 
     @Query("SELECT * FROM sensor_readings WHERE timestamp BETWEEN :startTime AND :endTime ORDER BY timestamp DESC")
     LiveData<List<SensorReadingEntity>> getSensorReadings(Date startTime, Date endTime);
 
     @Query("SELECT * FROM sensor_readings ORDER BY timestamp DESC LIMIT 1")
     LiveData<SensorReadingEntity> getLatestSensorReading();
+
+    @Query("DELETE FROM sensor_readings WHERE timestamp < :date")
+    void deleteSensorReadingsBefore(Date date);
 
     @Query("DELETE FROM sensor_readings")
     void deleteAll();

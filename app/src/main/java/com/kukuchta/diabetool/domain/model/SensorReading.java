@@ -7,19 +7,19 @@ import java.util.Objects;
 
 public class SensorReading {
     private final Date timestamp;
-    private final int glucoseLevel; // in mg/dl
+    private final int value; // in mg/dl
 
-    public SensorReading(Date timestamp, int glucoseLevel) {
+    public SensorReading(Date timestamp, int value) {
         this.timestamp = timestamp;
-        this.glucoseLevel = glucoseLevel;
+        this.value = value;
     }
 
     public Date getTimestamp() {
         return timestamp;
     }
 
-    public int getGlucoseLevel() {
-        return glucoseLevel;
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -27,12 +27,12 @@ public class SensorReading {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SensorReading that = (SensorReading) o;
-        return glucoseLevel == that.glucoseLevel && Objects.equals(timestamp, that.timestamp);
+        return value == that.value && Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, glucoseLevel);
+        return Objects.hash(timestamp, value);
     }
 
     @NonNull
@@ -40,7 +40,7 @@ public class SensorReading {
     public String toString() {
         return "SensorReading{" +
                 "timestamp=" + timestamp +
-                ", glucoseLevel=" + glucoseLevel +
+                ", value=" + value +
                 '}';
     }
 }
