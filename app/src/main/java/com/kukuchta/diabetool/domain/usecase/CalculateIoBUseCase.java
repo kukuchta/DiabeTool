@@ -55,7 +55,7 @@ public class CalculateIoBUseCase {
         Date now = new Date();
         Date startTime = new Date(now.getTime() - DEFAULT_DIA_MILLIS); // Simplified DIA
 
-        LiveData<List<Bolus>> recentBolusesLiveData = bolusRepository.getBoluses(startTime, now);
+        LiveData<List<Bolus>> recentBolusesLiveData = bolusRepository.getManualBoluses(startTime, now);  //TODO Use all boluses
 
         iobLiveData.addSource(recentBolusesLiveData, recentBoluses -> {
             double totalIob = 0.0;
@@ -65,7 +65,7 @@ public class CalculateIoBUseCase {
                     if (timeElapsedMillis < DEFAULT_DIA_MILLIS) {
                         // Simplified linear decay for example purposes
                         double fractionRemaining = 1.0 - ((double) timeElapsedMillis / DEFAULT_DIA_MILLIS);
-                        totalIob += bolus.getUnits() * fractionRemaining;
+                        totalIob += bolus.getValue() * fractionRemaining;
                     }
                 }
             }

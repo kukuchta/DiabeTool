@@ -2,20 +2,20 @@ package com.kukuchta.diabetool.domain.usecase;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import com.kukuchta.diabetool.domain.model.AutoCorrection;
-import com.kukuchta.diabetool.domain.repository.AutoCorrectionRepository;
+import com.kukuchta.diabetool.domain.model.Bolus;
+import com.kukuchta.diabetool.domain.repository.BolusRepository;
 import java.util.Date;
 import java.util.List;
 
 public class GetAutoCorrectionsForPeriodUseCase {
-    private final AutoCorrectionRepository autoCorrectionRepository;
+    private final BolusRepository bolusRepository;
 
-    public GetAutoCorrectionsForPeriodUseCase(@NonNull AutoCorrectionRepository autoCorrectionRepository) {
-        this.autoCorrectionRepository = autoCorrectionRepository;
+    public GetAutoCorrectionsForPeriodUseCase(@NonNull BolusRepository bolusRepository) {
+        this.bolusRepository = bolusRepository;
     }
 
     @NonNull
-    public LiveData<List<AutoCorrection>> execute(@NonNull Date startTime, @NonNull Date endTime) {
-        return autoCorrectionRepository.getAutoCorrections(startTime, endTime);
+    public LiveData<List<Bolus>> execute(@NonNull Date startTime, @NonNull Date endTime) {
+        return bolusRepository.getAutoBoluses(startTime, endTime);
     }
 }

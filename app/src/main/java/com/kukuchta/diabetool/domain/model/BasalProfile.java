@@ -2,7 +2,8 @@ package com.kukuchta.diabetool.domain.model;
 
 import androidx.annotation.NonNull;
 
-import java.util.List;import java.util.Objects;
+import java.util.List;
+import java.util.Objects;
 
 // Represents the overall basal insulin profile for 24 hours
 public class BasalProfile {
@@ -22,6 +23,7 @@ public class BasalProfile {
         if (o == null || getClass() != o.getClass()) return false;
         BasalProfile that = (BasalProfile) o;
         return Objects.equals(rates, that.rates);
+        // TODO Better basal rates equality
     }
 
     @Override

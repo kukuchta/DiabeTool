@@ -10,11 +10,17 @@ import java.util.List;
 
 public interface BolusRepository {
     // Write operations
-    void insertBolus(@NonNull Bolus bolus);
+    void insertManualBolus(@NonNull Bolus bolus);
+    void insertAutoBolus(@NonNull Bolus bolus);
+    void insertAutoBoluses(@NonNull List<Bolus> bolusList);
+    void deleteBolusesBefore(@NonNull Date date);
 
     // Read operations - observable
     @NonNull
-    LiveData<List<Bolus>> getBoluses(@NonNull Date startTime, @NonNull Date endTime);
+    LiveData<List<Bolus>> getManualBoluses(@NonNull Date startTime, @NonNull Date endTime);
+
+    @NonNull
+    LiveData<List<Bolus>> getAutoBoluses(@NonNull Date startTime, @NonNull Date endTime);
 
     @NonNull
     LiveData<Bolus> getLatestBolus();

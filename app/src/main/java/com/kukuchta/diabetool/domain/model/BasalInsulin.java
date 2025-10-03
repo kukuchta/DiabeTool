@@ -7,24 +7,22 @@ import androidx.annotation.NonNull;
 import java.util.Date;
 import java.util.Objects;
 
-public class Bolus {
+public class BasalInsulin {
     private final Date timestamp;
-    private final BolusType type;
-    private final double value; // e.g., 12.5j
-    private final boolean isManualEntry;
+    private final BasalInsulinType type;
+    private final double value;
 
-    public Bolus(Date timestamp, BolusType type, double value, boolean isManualEntry) {
+    public BasalInsulin(Date timestamp, BasalInsulinType type, double value) {
         this.timestamp = timestamp;
         this.type = type;
         this.value = value;
-        this.isManualEntry = isManualEntry;
     }
 
     public Date getTimestamp() {
         return timestamp;
     }
 
-    public BolusType getType() {
+    public BasalInsulinType getType() {
         return type;
     }
 
@@ -32,34 +30,28 @@ public class Bolus {
         return value;
     }
 
-    public boolean isManualEntry() {
-        return isManualEntry;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Bolus bolus = (Bolus) o;
-        return Math.abs(bolus.value - value) < INSULIN_EPSILON &&
-                type == bolus.type &&
-                isManualEntry == bolus.isManualEntry &&
-                Objects.equals(timestamp, bolus.timestamp);
+        BasalInsulin basalInsulin = (BasalInsulin) o;
+        return Math.abs(basalInsulin.value - value) < INSULIN_EPSILON &&
+                type == basalInsulin.type &&
+                Objects.equals(timestamp, basalInsulin.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, type, value, isManualEntry);
+        return Objects.hash(timestamp, type, value);
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "Bolus{" +
+        return "BasalInsulin{" +
                 "timestamp=" + timestamp +
                 ", type=" + type +
                 ", value=" + value +
-                ", isManualEntry=" + isManualEntry +
                 '}';
     }
 }

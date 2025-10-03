@@ -13,6 +13,6 @@ public class LogBolusUseCase {
 
     public void execute(@NonNull Bolus bolus) {
         // Future: Add validation logic for the bolus if needed
-        bolusRepository.insertBolus(bolus);
+        bolusRepository.insertManualBolus(bolus);
     }
 }

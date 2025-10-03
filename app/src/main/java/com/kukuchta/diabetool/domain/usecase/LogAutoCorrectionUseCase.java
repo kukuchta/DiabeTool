@@ -1,17 +1,18 @@
 package com.kukuchta.diabetool.domain.usecase;
 
 import androidx.annotation.NonNull;
-import com.kukuchta.diabetool.domain.model.AutoCorrection;
-import com.kukuchta.diabetool.domain.repository.AutoCorrectionRepository;
+
+import com.kukuchta.diabetool.domain.model.Bolus;
+import com.kukuchta.diabetool.domain.repository.BolusRepository;
 
 public class LogAutoCorrectionUseCase {
-    private final AutoCorrectionRepository autoCorrectionRepository;
+    private final BolusRepository bolusRepository;
 
-    public LogAutoCorrectionUseCase(@NonNull AutoCorrectionRepository autoCorrectionRepository) {
-        this.autoCorrectionRepository = autoCorrectionRepository;
+    public LogAutoCorrectionUseCase(@NonNull BolusRepository bolusRepository) {
+        this.bolusRepository = bolusRepository;
     }
 
-    public void execute(@NonNull AutoCorrection autoCorrection) {
-        autoCorrectionRepository.insertAutoCorrection(autoCorrection);
+    public void execute(@NonNull Bolus autoCorrection) {
+        bolusRepository.insertAutoBolus(autoCorrection);
     }
 }

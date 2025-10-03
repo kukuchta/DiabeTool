@@ -16,6 +16,6 @@ public class GetBolusesForPeriodUseCase {
 
     @NonNull
     public LiveData<List<Bolus>> execute(@NonNull Date startTime, @NonNull Date endTime) {
-        return bolusRepository.getBoluses(startTime, endTime);
+        return bolusRepository.getManualBoluses(startTime, endTime);
     }
 }
