@@ -13,6 +13,6 @@ public class LogIoBSnapshotUseCase {
     }
 
     public void execute(@NonNull IoB iob) {
-        iobRepository.insertIoBSnapshot(iob);
+        iobRepository.insertIoB(iob);
     }
 }
