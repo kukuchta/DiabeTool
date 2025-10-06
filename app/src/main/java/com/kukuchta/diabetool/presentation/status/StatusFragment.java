@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kukuchta.diabetool.databinding.FragmentStatusBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class StatusFragment extends Fragment {
 
     private FragmentStatusBinding binding;

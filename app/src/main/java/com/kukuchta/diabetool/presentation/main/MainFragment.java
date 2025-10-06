@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kukuchta.diabetool.databinding.FragmentMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;

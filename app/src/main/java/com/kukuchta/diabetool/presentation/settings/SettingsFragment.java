@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kukuchta.diabetool.databinding.FragmentSettingsBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;

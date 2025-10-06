@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kukuchta.diabetool.databinding.FragmentBackupBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class BackupFragment extends Fragment {
 
     private FragmentBackupBinding binding;

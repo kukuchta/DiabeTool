@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kukuchta.diabetool.databinding.FragmentHistoryBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class HistoryFragment extends Fragment {
 
     private FragmentHistoryBinding binding;
