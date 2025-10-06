@@ -7,9 +7,12 @@ import com.kukuchta.diabetool.domain.repository.SensorReadingRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetSensorReadingsForPeriodUseCase {
     private final SensorReadingRepository sensorReadingRepository;
 
+    @Inject
     public GetSensorReadingsForPeriodUseCase(@NonNull SensorReadingRepository sensorReadingRepository) {
         this.sensorReadingRepository = sensorReadingRepository;
     }

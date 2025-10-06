@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.kukuchta.diabetool.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;

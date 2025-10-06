@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -36,7 +37,7 @@ android {
 
 dependencies {
     implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
+    annotationProcessor(libs.room.compiler)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
@@ -47,4 +48,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.hilt.android)
+    annotationProcessor(libs.hilt.compiler)
+    implementation(libs.javapoet)
+}
+
+hilt {
+    enableAggregatingTask = false // TODO research conflict with javapoet, then remove
 }

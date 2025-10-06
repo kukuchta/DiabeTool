@@ -4,11 +4,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MainViewModel extends ViewModel {
+import com.kukuchta.diabetool.domain.usecase.GetSensorReadingsForPeriodUseCase;
 
+import javax.inject.Inject;
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
+public class MainViewModel extends ViewModel {
+    private final GetSensorReadingsForPeriodUseCase getSensorReadingsUseCase;
     private final MutableLiveData<String> mText;
 
-    public MainViewModel() {
+    @Inject
+    public MainViewModel(GetSensorReadingsForPeriodUseCase getSensorReadingsUseCase) {
+        this.getSensorReadingsUseCase = getSensorReadingsUseCase;
         mText = new MutableLiveData<>();
         mText.setValue("This is main fragment");
     }
