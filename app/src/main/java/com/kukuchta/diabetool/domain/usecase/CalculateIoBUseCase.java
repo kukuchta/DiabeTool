@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 public class CalculateIoBUseCase {
     private final BolusRepository bolusRepository;
     // private final SettingsRepository settingsRepository; // For ISF, DIA
@@ -21,7 +23,7 @@ public class CalculateIoBUseCase {
     // Default DIA if not fetched from settings (e.g., 4 hours)
     private static final long DEFAULT_DIA_MILLIS = TimeUnit.HOURS.toMillis(4);
 
-
+    @Inject
     public CalculateIoBUseCase(@NonNull BolusRepository bolusRepository /*, @NonNull SettingsRepository settingsRepository */) {
         this.bolusRepository = bolusRepository;
         // this.settingsRepository = settingsRepository;

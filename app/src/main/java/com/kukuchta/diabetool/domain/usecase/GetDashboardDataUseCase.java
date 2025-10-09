@@ -14,12 +14,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 public class GetDashboardDataUseCase {
     private final GetLatestSensorReadingUseCase getLatestSensorReadingUseCase;
     private final GetIoBHistoryUseCase getIoBHistoryUseCase; // Or CalculateActiveInsulinUseCase
     private final GetMealsForPeriodUseCase getMealsForPeriodUseCase;
     // Add other use cases as dependencies
 
+    @Inject
     public GetDashboardDataUseCase(
             @NonNull GetLatestSensorReadingUseCase getLatestSensorReadingUseCase,
             @NonNull GetIoBHistoryUseCase getIoBHistoryUseCase,

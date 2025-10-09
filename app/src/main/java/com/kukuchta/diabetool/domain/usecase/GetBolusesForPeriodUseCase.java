@@ -7,9 +7,12 @@ import com.kukuchta.diabetool.domain.repository.BolusRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetBolusesForPeriodUseCase {
     private final BolusRepository bolusRepository;
 
+    @Inject
     public GetBolusesForPeriodUseCase(@NonNull BolusRepository bolusRepository) {
         this.bolusRepository = bolusRepository;
     }

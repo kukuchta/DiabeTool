@@ -7,9 +7,12 @@ import com.kukuchta.diabetool.domain.repository.MealRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetMealsForPeriodUseCase {
     private final MealRepository mealRepository;
 
+    @Inject
     public GetMealsForPeriodUseCase(@NonNull MealRepository mealRepository) {
         this.mealRepository = mealRepository;
     }

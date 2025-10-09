@@ -5,10 +5,13 @@ import androidx.lifecycle.LiveData;
 import com.kukuchta.diabetool.domain.model.BasalProfile;
 import com.kukuchta.diabetool.domain.repository.BasalProfileRepository;
 
+import javax.inject.Inject;
+
 public class GetBasalProfileUseCase {
 
     private final BasalProfileRepository repository;
 
+    @Inject
     public GetBasalProfileUseCase(BasalProfileRepository repository) {
         this.repository = repository;
     }

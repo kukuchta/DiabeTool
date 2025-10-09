@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import com.kukuchta.diabetool.domain.model.InsulinActivity;
 import com.kukuchta.diabetool.domain.repository.InsulinActivityRepository;
 
+import javax.inject.Inject;
+
 public class LogInsulinActivityUseCase {
     private final InsulinActivityRepository insulinActivityRepository;
 
+    @Inject
     public LogInsulinActivityUseCase(@NonNull InsulinActivityRepository insulinActivityRepository) {
         this.insulinActivityRepository = insulinActivityRepository;
     }

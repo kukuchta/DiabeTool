@@ -7,9 +7,12 @@ import com.kukuchta.diabetool.domain.repository.BloodMeasurementRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetBloodMeasurementsForPeriodUseCase {
     private final BloodMeasurementRepository bloodMeasurementRepository;
 
+    @Inject
     public GetBloodMeasurementsForPeriodUseCase(@NonNull BloodMeasurementRepository bloodMeasurementRepository) {
         this.bloodMeasurementRepository = bloodMeasurementRepository;
     }

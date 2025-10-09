@@ -7,9 +7,12 @@ import com.kukuchta.diabetool.domain.repository.BasalRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetAutoBasalsForPeriodUseCase {
     private final BasalRepository basalRepository;
 
+    @Inject
     public GetAutoBasalsForPeriodUseCase(@NonNull BasalRepository basalRepository) {
         this.basalRepository = basalRepository;
     }

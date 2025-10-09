@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import com.kukuchta.diabetool.domain.model.Meal;
 import com.kukuchta.diabetool.domain.repository.MealRepository;
 
+import javax.inject.Inject;
+
 public class LogMealUseCase {
     private final MealRepository mealRepository;
 
+    @Inject
     public LogMealUseCase(@NonNull MealRepository mealRepository) {
         this.mealRepository = mealRepository;
     }

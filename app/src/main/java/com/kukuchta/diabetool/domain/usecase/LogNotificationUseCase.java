@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import com.kukuchta.diabetool.domain.model.Notification;
 import com.kukuchta.diabetool.domain.repository.NotificationRepository;
 
+import javax.inject.Inject;
+
 public class LogNotificationUseCase {
     private final NotificationRepository notificationRepository;
 
+    @Inject
     public LogNotificationUseCase(@NonNull NotificationRepository notificationRepository) {
         this.notificationRepository = notificationRepository;
     }

@@ -8,9 +8,12 @@ import com.kukuchta.diabetool.domain.repository.IoBRepository;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class GetIoBHistoryUseCase {
     private final IoBRepository iobRepository;
 
+    @Inject
     public GetIoBHistoryUseCase(@NonNull IoBRepository iobRepository) {
         this.iobRepository = iobRepository;
     }

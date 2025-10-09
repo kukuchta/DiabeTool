@@ -19,7 +19,7 @@ public class SensorReadingEntity {
 
     public SensorReadingEntity() {}
 
-    @Ignore
+    @Ignore // Ignore all other constructors for Room.
     public SensorReadingEntity(long id, Date timestamp, int value) {
         this.id = id;
         this.timestamp = timestamp;

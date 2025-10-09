@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import com.kukuchta.diabetool.domain.model.BasalProfile;
 import com.kukuchta.diabetool.domain.repository.BasalProfileRepository;
 
+import javax.inject.Inject;
+
 public class CreateBasalProfileUseCase {
 
     private final BasalProfileRepository repository;
 
+    @Inject
     public CreateBasalProfileUseCase(BasalProfileRepository repository) {
         this.repository = repository;
     }
