@@ -55,18 +55,23 @@ public class SensorReadingRepositoryImpl implements SensorReadingRepository {
 
     @NonNull
     @Override
-    public LiveData<List<SensorReading>> getSensorReadings(@NonNull Date startTime, @NonNull Date endTime) {
-        return Transformations.map(sensorReadingDao.getSensorReadings(startTime, endTime), this::mapEntityListToModelList);
+    public LiveData<List<SensorReading>> getLiveSensorReadings(@NonNull Date startTime, @NonNull Date endTime) {
+        return Transformations.map(sensorReadingDao.getLiveSensorReadings(startTime, endTime), this::mapEntityListToModelList);
     }
 
     @NonNull
     @Override
-    public LiveData<SensorReading> getLatestSensorReading() {
-        return Transformations.map(sensorReadingDao.getLatestSensorReading(), this::mapToModel);
+    public LiveData<SensorReading> getLiveLatestSensorReading() {
+        return Transformations.map(sensorReadingDao.getLiveLatestSensorReading(), this::mapToModel);
+    }
+
+    @Override
+    public SensorReading getLatestSensorReading() {
+        SensorReadingEntity entity = sensorReadingDao.getLatestSensorReading();
+        return (entity != null) ? mapToModel(entity) : null;
     }
 
     // --- Mappers ---
-
     private SensorReadingEntity mapToEntity(SensorReading model) {
         SensorReadingEntity entity = new SensorReadingEntity();
         entity.timestamp = model.getTimestamp();

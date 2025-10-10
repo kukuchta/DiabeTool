@@ -1,3 +1,7 @@
+Projekt musi być tworzony w języku Java.
+Skrypty Gradle mają składnię Kotlin.
+Cały generowany kod wraz z komentarzami musi być w języku angielskim.
+
 Wymagania:
 
 1. Ekran główny

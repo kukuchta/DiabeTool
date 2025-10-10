@@ -17,17 +17,17 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 public class GetDashboardDataUseCase {
-    private final GetLatestSensorReadingUseCase getLatestSensorReadingUseCase;
+    private final GetLiveLatestSensorReadingUseCase getLiveLatestSensorReadingUseCase;
     private final GetIoBHistoryUseCase getIoBHistoryUseCase; // Or CalculateActiveInsulinUseCase
     private final GetMealsForPeriodUseCase getMealsForPeriodUseCase;
     // Add other use cases as dependencies
 
     @Inject
     public GetDashboardDataUseCase(
-            @NonNull GetLatestSensorReadingUseCase getLatestSensorReadingUseCase,
+            @NonNull GetLiveLatestSensorReadingUseCase getLiveLatestSensorReadingUseCase,
             @NonNull GetIoBHistoryUseCase getIoBHistoryUseCase,
             @NonNull GetMealsForPeriodUseCase getMealsForPeriodUseCase) {
-        this.getLatestSensorReadingUseCase = getLatestSensorReadingUseCase;
+        this.getLiveLatestSensorReadingUseCase = getLiveLatestSensorReadingUseCase;
         this.getIoBHistoryUseCase = getIoBHistoryUseCase;
         this.getMealsForPeriodUseCase = getMealsForPeriodUseCase;
     }
@@ -36,7 +36,7 @@ public class GetDashboardDataUseCase {
     public LiveData<DashboardData> execute() {
         MediatorLiveData<DashboardData> dashboardLiveData = new MediatorLiveData<>();
 
-        LiveData<SensorReading> latestSensorReading = getLatestSensorReadingUseCase.execute();
+        LiveData<SensorReading> latestSensorReading = getLiveLatestSensorReadingUseCase.execute();
         LiveData<IoB> currentIoB = getIoBHistoryUseCase.executeForLatest(); // Or from Calculate IoB use case
 
         // Example: Get meals from the last 6 hours

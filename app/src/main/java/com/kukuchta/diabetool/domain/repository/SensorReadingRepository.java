@@ -1,6 +1,7 @@
 package com.kukuchta.diabetool.domain.repository;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.kukuchta.diabetool.domain.model.SensorReading;
@@ -17,14 +18,16 @@ public interface SensorReadingRepository {
 
     // Read operations - observable
     @NonNull
-    LiveData<List<SensorReading>> getSensorReadings(@NonNull Date startTime, @NonNull Date endTime);
+    LiveData<List<SensorReading>> getLiveSensorReadings(@NonNull Date startTime, @NonNull Date endTime);
 
     @NonNull
-    LiveData<SensorReading> getLatestSensorReading(); // Assuming you always want to observe the latest
+    LiveData<SensorReading> getLiveLatestSensorReading(); // Assuming you always want to observe the latest
 
     // For one-off, non-observable reads (if needed, also run on background thread)
+    @Nullable
+    SensorReading getLatestSensorReading();
+
     // @NonNull
-    // List<SensorReading> getSensorReadingsSync(@NonNull Date startTime, @NonNull Date endTime);
-    // @Nullable
-    // SensorReading getLatestSensorReadingSync();
+    // List<SensorReading> getSensorReadings(@NonNull Date startTime, @NonNull Date endTime);
+
 }

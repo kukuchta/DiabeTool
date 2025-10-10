@@ -19,10 +19,13 @@ public interface SensorReadingDao {
     void insertAll(List<SensorReadingEntity> readings);
 
     @Query("SELECT * FROM sensor_readings WHERE timestamp BETWEEN :startTime AND :endTime ORDER BY timestamp DESC")
-    LiveData<List<SensorReadingEntity>> getSensorReadings(Date startTime, Date endTime);
+    LiveData<List<SensorReadingEntity>> getLiveSensorReadings(Date startTime, Date endTime);
 
     @Query("SELECT * FROM sensor_readings ORDER BY timestamp DESC LIMIT 1")
-    LiveData<SensorReadingEntity> getLatestSensorReading();
+    LiveData<SensorReadingEntity> getLiveLatestSensorReading();
+
+    @Query("SELECT * FROM sensor_readings ORDER BY timestamp DESC LIMIT 1")
+    SensorReadingEntity getLatestSensorReading();
 
     @Query("DELETE FROM sensor_readings WHERE timestamp < :date")
     void deleteSensorReadingsBefore(Date date);

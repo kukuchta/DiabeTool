@@ -15,8 +15,7 @@ public class GetLatestSensorReadingUseCase {
         this.sensorReadingRepository = sensorReadingRepository;
     }
 
-    @NonNull
-    public LiveData<SensorReading> execute() {
+    public SensorReading execute() {
         return sensorReadingRepository.getLatestSensorReading();
     }
 }

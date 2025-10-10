@@ -2,23 +2,22 @@ package com.kukuchta.diabetool.domain.usecase;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+
 import com.kukuchta.diabetool.domain.model.SensorReading;
 import com.kukuchta.diabetool.domain.repository.SensorReadingRepository;
-import java.util.Date;
-import java.util.List;
 
 import javax.inject.Inject;
 
-public class GetSensorReadingsForPeriodUseCase {
+public class GetLiveLatestSensorReadingUseCase {
     private final SensorReadingRepository sensorReadingRepository;
 
     @Inject
-    public GetSensorReadingsForPeriodUseCase(@NonNull SensorReadingRepository sensorReadingRepository) {
+    public GetLiveLatestSensorReadingUseCase(@NonNull SensorReadingRepository sensorReadingRepository) {
         this.sensorReadingRepository = sensorReadingRepository;
     }
 
     @NonNull
-    public LiveData<List<SensorReading>> execute(@NonNull Date startTime, @NonNull Date endTime) {
-        return sensorReadingRepository.getLiveSensorReadings(startTime, endTime);
+    public LiveData<SensorReading> execute() {
+        return sensorReadingRepository.getLiveLatestSensorReading();
     }
 }
