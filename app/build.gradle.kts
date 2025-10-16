@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
     implementation(libs.javapoet)
+    //implementation(libs.mpandroidchart)
+    implementation(libs.androidchart)
 }
 
 hilt {

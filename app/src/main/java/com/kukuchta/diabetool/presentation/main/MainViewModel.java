@@ -4,53 +4,67 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.kukuchta.diabetool.collectors.CollectorManager;
-import com.kukuchta.diabetool.collectors.base.CollectorPlugin;
-import com.kukuchta.diabetool.domain.usecase.GetSensorReadingsForPeriodUseCase;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineDataSet;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
-import javax.inject.Inject;
-import dagger.hilt.android.lifecycle.HiltViewModel;
-
-@HiltViewModel
+/**
+ * MainViewModel — adapted to expose LiveData<Entry> used by MainFragment for new data.
+ * I left the structure minimal so it will integrate with your existing CollectorManager / DI.
+ *
+ * If your original ViewModel already exposes sensorReadings flows, merge these helpers into it:
+ *  - getLiveEntry()
+ *  - trimOldEntries(LineDataSet)
+ *  - isAutoScrollEnabled() / setAutoScrollEnabled(boolean)
+ *
+ * The demo generator is optional; remove or replace with your real data feed.
+ */
 public class MainViewModel extends ViewModel {
-    private final GetSensorReadingsForPeriodUseCase getSensorReadingsUseCase;
-    private final CollectorManager collectorManager;
-    private final Timer collectorTimer = new Timer();
-    private final MutableLiveData<String> mText;
 
-    @Inject
-    public MainViewModel(
-            GetSensorReadingsForPeriodUseCase getSensorReadingsUseCase,
-            CollectorManager collectorManager) {
-        this.getSensorReadingsUseCase = getSensorReadingsUseCase;
-        this.collectorManager = collectorManager;
+    private final MutableLiveData<Entry> liveEntry = new MutableLiveData<>();
+    private float nextX = 24f;
+    private final Random rnd = new Random();
 
-        startDataCollection();
+    private final float dataWindowHours = 24f;
+    private final float visibleHours = 3f;
+    private boolean autoScrollEnabled = true;
 
-        mText = new MutableLiveData<>();
-        mText.setValue("This is main fragment");
+    public LiveData<Entry> getLiveEntry() {
+        return liveEntry;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    /**
+     * Demo helper — create the next point (call from fragment or scheduler).
+     * Replace with your real sensor reading push.
+     */
+    public void generateNextPoint() {
+        nextX += 0.5f; // e.g., a 30-minute step example
+        float y = rnd.nextFloat() * 10f;
+        Entry e = new Entry(nextX, y);
+        liveEntry.postValue(e);
     }
 
-    @Override
-    protected void onCleared() {
-        collectorTimer.cancel();
-        super.onCleared();
+    /**
+     * Trim entries older than dataWindowHours from the provided dataset.
+     * If your real data storage differs, implement trimming where suitable.
+     */
+    public void trimOldEntries(LineDataSet set) {
+        float cutoff = nextX - dataWindowHours;
+        while (set.getEntryCount() > 0 && set.getEntryForIndex(0).getX() < cutoff) {
+            set.removeFirst();
+        }
     }
 
-    private void startDataCollection() {
-        collectorTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                collectorManager.collectDataFromActivePlugins();
-            }
-        }, 0, TimeUnit.MINUTES.toMillis(1)); //TODO Get collection period from preferences
+    public float getVisibleHours() {
+        return visibleHours;
+    }
+
+    public boolean isAutoScrollEnabled() {
+        return autoScrollEnabled;
+    }
+
+    public void setAutoScrollEnabled(boolean enabled) {
+        this.autoScrollEnabled = enabled;
     }
 }

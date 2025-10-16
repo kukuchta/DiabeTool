@@ -75,11 +75,22 @@ public class TestCollectorPlugin implements CollectorPlugin {
         }
     }
 
+    /*     * Calculates an initial start date that is guaranteed to be in the past.
+     * It finds the last 5-minute mark and then subtracts another 5 minutes.
+     * For example, if it's 13:08, the last mark is 13:05. This function will
+     * return 13:00, ensuring at least one reading (for 13:05) is generated.
+     */
     private Date getInitialStartDate() {
         Calendar calendar = Calendar.getInstance();
         int minutes = calendar.get(Calendar.MINUTE);
         int remainder = minutes % READING_INTERVAL_MINUTES;
+
+        // Go back to the most recent 5-minute mark (e.g., 13:08 -> 13:05)
         calendar.add(Calendar.MINUTE, -remainder);
+
+        // THEN, go back one more full interval to ensure it's in the past. (13:05 -> 13:00)
+        calendar.add(Calendar.MINUTE, -READING_INTERVAL_MINUTES);
+
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
