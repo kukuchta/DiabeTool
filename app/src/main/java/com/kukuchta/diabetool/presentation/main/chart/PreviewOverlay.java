@@ -28,7 +28,6 @@ public class PreviewOverlay extends View {
 
     private float lastX;
     private boolean dragging = false;
-    private final float TOUCH_MARGIN_PX;
 
     public PreviewOverlay(Context context) {
         this(context, null);
@@ -42,12 +41,10 @@ public class PreviewOverlay extends View {
         super(context, attrs, defStyleAttr);
 
         rectPaint.setStyle(Paint.Style.STROKE);
-        rectPaint.setStrokeWidth(4f * getResources().getDisplayMetrics().density);
+        rectPaint.setStrokeWidth(getResources().getDisplayMetrics().density);
 
         fillPaint.setStyle(Paint.Style.FILL);
         fillPaint.setAlpha(40);
-
-        TOUCH_MARGIN_PX = 40f * getResources().getDisplayMetrics().density;
     }
 
     // Setters from controller
@@ -72,14 +69,32 @@ public class PreviewOverlay extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float width = getWidth();
-        float left = Math.max(0f, Math.min(rectLeftPx, width));
-        float right = Math.max(0f, Math.min(rectRightPx, width));
+        float viewWidth = getWidth();
+        float viewHeight = getHeight();
+
+        float left = Math.max(0f, Math.min(rectLeftPx, viewWidth));
+        float right = Math.max(0f, Math.min(rectRightPx, viewWidth));
+
         // ensure not inverted
         if (right < left) {
             float t = left; left = right; right = t;
         }
-        rect.set(left, 0f, right, getHeight());
+
+        // Apply the inset to shrink the rectangle
+        float insetX = viewWidth * 0.01f;
+        float insetY = viewHeight * 0.01f;
+        float finalLeft = left + insetX;
+        float finalRight = right - insetX;
+        float finalTop = insetY;
+        float finalBottom = viewHeight - insetY;
+
+        // Prevent the rectangle from becoming inverted if it's too small
+        if (finalRight < finalLeft) {
+            finalRight = finalLeft;
+        }
+
+        rect.set(finalLeft, finalTop, finalRight, finalBottom);
+
         canvas.drawRect(rect, fillPaint);
         canvas.drawRect(rect, rectPaint);
     }
@@ -89,10 +104,6 @@ public class PreviewOverlay extends View {
         float x = ev.getX();
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-                // Only start dragging if touch is inside (or near) the rectangle.
-                if (x < rectLeftPx - TOUCH_MARGIN_PX || x > rectRightPx + TOUCH_MARGIN_PX) {
-                    return false;
-                }
                 getParent().requestDisallowInterceptTouchEvent(true);
                 lastX = x;
                 dragging = true;
